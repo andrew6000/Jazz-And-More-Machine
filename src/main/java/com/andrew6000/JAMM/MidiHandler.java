@@ -16,6 +16,12 @@ public class MidiHandler {
              * https://docs.oracle.com/javase/7/docs/api/javax/sound/midi/Synthesizer.html
              */
             Synthesizer midiSynth = MidiSystem.getSynthesizer();
+
+            System.out.println(midiSynth.getDeviceInfo().getName());
+            System.out.println(midiSynth.getDeviceInfo().getVendor());
+            System.out.println(midiSynth.getDeviceInfo().getDescription());
+            System.out.println(midiSynth.getDeviceInfo().getVersion());
+
             midiSynth.open();
 
             //get and load default instrument and channel lists

@@ -1,5 +1,10 @@
 package com.andrew6000.JAMM;
 
+import com.andrew6000.JAMM.song.Note;
+import com.andrew6000.JAMM.song.Song;
+import com.andrew6000.JAMM.song.chord.Chord;
+import com.andrew6000.JAMM.song.chord.ChordMajor;
+import com.andrew6000.JAMM.song.chord.ChordMinor;
 import org.lwjgl.*;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
@@ -21,10 +26,20 @@ public class Main {
 
     public static Jamm jamm;
     public static MidiHandler midiHandler;
+    public static Song song;
 
     public void run() {
 
+        Chord[] chords = new Chord[] {
+                new ChordMinor(new Note(57)),
+                new ChordMajor(new Note(62)),
+                new ChordMajor(new Note(55)),
+                new ChordMinor(new Note(52))};
+
+        song = new Song( chords );
+
         jamm = new Jamm();
+        jamm.setSong( song );
         midiHandler = new MidiHandler();
 
         init();
