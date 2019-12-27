@@ -8,13 +8,15 @@ public class Song {
     private float tempo;
     private int timeSig;
     private int length;
+    private SongKey songKey;
 
     private HashMap<Integer, SongEvent> songEvents;
 
-    public Song (int length) {
+    public Song (int length, SongKey key) {
         this.tempo = 120;
         this.timeSig = 4;
         this.length = length;
+        this.songKey = key;
 
         this.songEvents = new HashMap<>();
 
@@ -34,5 +36,9 @@ public class Song {
 
     public int getLength() {
         return length;
+    }
+
+    public SongKey getSongKey() {
+        return songKey;
     }
 }
