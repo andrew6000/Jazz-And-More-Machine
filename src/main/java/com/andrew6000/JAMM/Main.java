@@ -5,6 +5,7 @@ import com.andrew6000.JAMM.song.Song;
 import com.andrew6000.JAMM.song.chord.Chord;
 import com.andrew6000.JAMM.song.chord.ChordMajor;
 import com.andrew6000.JAMM.song.chord.ChordMinor;
+import com.andrew6000.JAMM.song.event.EventChordChange;
 import org.lwjgl.*;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
@@ -30,13 +31,11 @@ public class Main {
 
     public void run() {
 
-        Chord[] chords = new Chord[] {
-                new ChordMinor(new Note(57)),
-                new ChordMajor(new Note(62)),
-                new ChordMajor(new Note(55)),
-                new ChordMinor(new Note(52))};
-
-        song = new Song( chords );
+        song = new Song(120);
+        song.getSongEvents().put(0, new EventChordChange( new ChordMinor(new Note(57)) ));
+        song.getSongEvents().put(30, new EventChordChange( new ChordMajor(new Note(62)) ));
+        song.getSongEvents().put(60, new EventChordChange( new ChordMajor(new Note(55)) ));
+        song.getSongEvents().put(90, new EventChordChange( new ChordMinor(new Note(52)) ));
 
         jamm = new Jamm();
         jamm.setSong( song );
