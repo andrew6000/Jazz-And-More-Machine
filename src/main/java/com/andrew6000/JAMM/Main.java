@@ -1,20 +1,13 @@
 package com.andrew6000.JAMM;
 
-import com.andrew6000.JAMM.song.EnumNote;
-import com.andrew6000.JAMM.song.Note;
-import com.andrew6000.JAMM.song.Song;
-import com.andrew6000.JAMM.song.SongKey;
-import com.andrew6000.JAMM.song.chord.Chord;
+import com.andrew6000.JAMM.song.*;
 import com.andrew6000.JAMM.song.chord.ChordMajor;
 import com.andrew6000.JAMM.song.chord.ChordMinor;
 import com.andrew6000.JAMM.song.event.EventChordChange;
-import org.lwjgl.*;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 import org.lwjgl.system.*;
 
-import javax.sound.midi.MidiMessage;
-import javax.sound.midi.MidiUnavailableException;
 import java.nio.*;
 
 import static org.lwjgl.glfw.Callbacks.*;
@@ -33,11 +26,11 @@ public class Main {
 
     public void run() {
 
-        song = new Song(120, new SongKey (EnumNote.D) );
-        song.getSongEvents().put(0 , new EventChordChange( new Chord (2, song.getSongKey()) ));
-        song.getSongEvents().put(30, new EventChordChange( new Chord (5, song.getSongKey()) ));
-        song.getSongEvents().put(60, new EventChordChange( new Chord (1, song.getSongKey()) ));
-        song.getSongEvents().put(90, new EventChordChange( new Chord (6, song.getSongKey()) ));
+        song = new Song(120, new SongKey ( new Note (NoteVals.C)) );
+        song.getSongEvents().put(0 , new EventChordChange( new ChordMinor (2, song.getSongKey()) ));
+        song.getSongEvents().put(30, new EventChordChange( new ChordMajor (5, song.getSongKey()) ));
+        song.getSongEvents().put(60, new EventChordChange( new ChordMajor (1, song.getSongKey()) ));
+        song.getSongEvents().put(90, new EventChordChange( new ChordMinor (6, song.getSongKey()) ));
 
         jamm = new Jamm();
         jamm.setSong( song );
