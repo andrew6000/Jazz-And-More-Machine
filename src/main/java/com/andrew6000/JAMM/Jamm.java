@@ -15,6 +15,8 @@ public class Jamm {
     int songTime;
     float beat;
 
+    boolean metEnabled = true;
+
     public Jamm (){
         midiHandler = new MidiHandler();
 
@@ -28,6 +30,21 @@ public class Jamm {
     public void update(){
         this.beat = this.songTime / song.getBeatLength();
         SongEvent event = song.getSongEvents().get(this.beat);
+
+
+        if (this.beat - ((int) this.beat) < 0.01){
+
+            midiHandler.getMidiChannels()[9].allNotesOff();
+            if ( (int)(this.beat) % song.getTimeSig() == 0 ){
+                midiHandler.getMidiChannels()[9].noteOn(34, 100);
+            }else{
+                midiHandler.getMidiChannels()[9].noteOn(33, 100);
+            }
+
+
+
+        }
+
         if (event != null){
 
             midiHandler.getMidiChannels()[0].allNotesOff();
@@ -35,7 +52,7 @@ public class Jamm {
                 Chord chord = ((EventChordChange) event).getChord();
                 if (chord != null) {
                     for (Note note : chord.getChordTones()){
-                        midiHandler.getMidiChannels()[0].noteOn(note.getMidiValue(), 100);
+                        midiHandler.getMidiChannels()[0].noteOn(note.getMidiValue(), 50);
                     }
                 }
 

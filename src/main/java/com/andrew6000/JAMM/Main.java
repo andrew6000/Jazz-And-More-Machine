@@ -24,26 +24,26 @@ public class Main {
 
     public void run() {
 
-        song = new Song(16, 50, new SongKey ( new Note (NoteVals.E)) );
+        song = new Song(32, 20, new SongKey ( new Note (NoteVals.A_SHARP)) );
         song.getSongEvents().put(0f , new EventChordChange( new ChordMajorSeven   (1 )));
-        song.getSongEvents().put(1f , new EventChordChange( new ChordMinorSeven   (6 )));
-        song.getSongEvents().put(2f , new EventChordChange( new ChordMinorSeven   (2 )));
-        song.getSongEvents().put(3f , new EventChordChange( new ChordDominantSeven(5 )));
-
-        song.getSongEvents().put(4f , new EventChordChange( new ChordMajorSeven   (1 )));
-        song.getSongEvents().put(5f , new EventChordChange( new ChordMinorSeven   (6 )));
-        song.getSongEvents().put(6f , new EventChordChange( new ChordMinorSeven   (2 )));
-        song.getSongEvents().put(7f , new EventChordChange( new ChordDominantSeven(5 )));
+        song.getSongEvents().put(2f , new EventChordChange( new ChordMinorSeven   (6 )));
+        song.getSongEvents().put(4f , new EventChordChange( new ChordMinorSeven   (2 )));
+        song.getSongEvents().put(6f , new EventChordChange( new ChordDominantSeven(5 )));
 
         song.getSongEvents().put(8f , new EventChordChange( new ChordMajorSeven   (1 )));
-        song.getSongEvents().put(9f , new EventChordChange( new ChordDominantSeven(1 )));
-        song.getSongEvents().put(10f, new EventChordChange( new ChordMajorSeven   (4 )));
-        song.getSongEvents().put(11f, new EventChordChange( new ChordMinor        (4 )));
+        song.getSongEvents().put(10f, new EventChordChange( new ChordMinorSeven   (6 )));
+        song.getSongEvents().put(12f, new EventChordChange( new ChordMinorSeven   (2 )));
+        song.getSongEvents().put(14f, new EventChordChange( new ChordDominantSeven(5 )));
 
-        song.getSongEvents().put(12f, new EventChordChange( new ChordMajorSeven   (1 )));
-        song.getSongEvents().put(13f, new EventChordChange( new ChordMinorSeven   (6 )));
-        song.getSongEvents().put(14f, new EventChordChange( new ChordMinorSeven   (2 )));
-        song.getSongEvents().put(15f, new EventChordChange( new ChordDominantSeven(5 )));
+        song.getSongEvents().put(16f, new EventChordChange( new ChordMajorSeven   (1 )));
+        song.getSongEvents().put(18f, new EventChordChange( new ChordDominantSeven(1 )));
+        song.getSongEvents().put(20f, new EventChordChange( new ChordMajorSeven   (4 )));
+        song.getSongEvents().put(22f, new EventChordChange( new ChordMinor        (4 )));
+
+        song.getSongEvents().put(24f, new EventChordChange( new ChordMajorSeven   (1 )));
+        song.getSongEvents().put(26f, new EventChordChange( new ChordMinorSeven   (6 )));
+        song.getSongEvents().put(28f, new EventChordChange( new ChordMinorSeven   (2 )));
+        song.getSongEvents().put(30f, new EventChordChange( new ChordDominantSeven(5 )));
 
         jamm = new Jamm();
         jamm.setSong( song );
