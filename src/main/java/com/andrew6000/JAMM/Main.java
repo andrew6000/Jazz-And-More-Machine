@@ -1,8 +1,7 @@
 package com.andrew6000.JAMM;
 
 import com.andrew6000.JAMM.song.*;
-import com.andrew6000.JAMM.song.chord.ChordMajor;
-import com.andrew6000.JAMM.song.chord.ChordMinor;
+import com.andrew6000.JAMM.song.chord.*;
 import com.andrew6000.JAMM.song.event.EventChordChange;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
@@ -21,20 +20,33 @@ public class Main {
     private long window;
 
     public static Jamm jamm;
-    public static MidiHandler midiHandler;
     public static Song song;
 
     public void run() {
 
-        song = new Song(120, new SongKey ( new Note (NoteVals.C)) );
-        song.getSongEvents().put(0 , new EventChordChange( new ChordMinor (2, song.getSongKey()) ));
-        song.getSongEvents().put(30, new EventChordChange( new ChordMajor (5, song.getSongKey()) ));
-        song.getSongEvents().put(60, new EventChordChange( new ChordMajor (1, song.getSongKey()) ));
-        song.getSongEvents().put(90, new EventChordChange( new ChordMinor (6, song.getSongKey()) ));
+        song = new Song(16, 50, new SongKey ( new Note (NoteVals.E)) );
+        song.getSongEvents().put(0f , new EventChordChange( new ChordMajorSeven   (1 )));
+        song.getSongEvents().put(1f , new EventChordChange( new ChordMinorSeven   (6 )));
+        song.getSongEvents().put(2f , new EventChordChange( new ChordMinorSeven   (2 )));
+        song.getSongEvents().put(3f , new EventChordChange( new ChordDominantSeven(5 )));
+
+        song.getSongEvents().put(4f , new EventChordChange( new ChordMajorSeven   (1 )));
+        song.getSongEvents().put(5f , new EventChordChange( new ChordMinorSeven   (6 )));
+        song.getSongEvents().put(6f , new EventChordChange( new ChordMinorSeven   (2 )));
+        song.getSongEvents().put(7f , new EventChordChange( new ChordDominantSeven(5 )));
+
+        song.getSongEvents().put(8f , new EventChordChange( new ChordMajorSeven   (1 )));
+        song.getSongEvents().put(9f , new EventChordChange( new ChordDominantSeven(1 )));
+        song.getSongEvents().put(10f, new EventChordChange( new ChordMajorSeven   (4 )));
+        song.getSongEvents().put(11f, new EventChordChange( new ChordMinor        (4 )));
+
+        song.getSongEvents().put(12f, new EventChordChange( new ChordMajorSeven   (1 )));
+        song.getSongEvents().put(13f, new EventChordChange( new ChordMinorSeven   (6 )));
+        song.getSongEvents().put(14f, new EventChordChange( new ChordMinorSeven   (2 )));
+        song.getSongEvents().put(15f, new EventChordChange( new ChordDominantSeven(5 )));
 
         jamm = new Jamm();
         jamm.setSong( song );
-        midiHandler = new MidiHandler();
 
         init();
         loop();

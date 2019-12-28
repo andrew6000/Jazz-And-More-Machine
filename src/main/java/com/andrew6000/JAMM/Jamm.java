@@ -9,26 +9,33 @@ import com.andrew6000.JAMM.song.event.SongEvent;
 
 public class Jamm {
 
+    public static MidiHandler midiHandler;
+
     Song song;
     int songTime;
-    int beat;
+    float beat;
 
     public Jamm (){
+        midiHandler = new MidiHandler();
+
+        // jazz guitar patch lol
+        midiHandler.getMidiChannels()[0].programChange(26);
+
         this.songTime = 0;
         this.beat = 0;
     }
 
     public void update(){
-        SongEvent event = song.getSongEvents().get(songTime);
+        this.beat = this.songTime / song.getBeatLength();
+        SongEvent event = song.getSongEvents().get(this.beat);
         if (event != null){
 
-            Main.midiHandler.getMidiChannels()[0].allNotesOff();
+            midiHandler.getMidiChannels()[0].allNotesOff();
             if (event instanceof EventChordChange){
                 Chord chord = ((EventChordChange) event).getChord();
                 if (chord != null) {
                     for (Note note : chord.getChordTones()){
-                        Main.midiHandler.getMidiChannels()[0].noteOn(note.getMidiValue(), 100);
-                        System.out.println(note.getValue().name());
+                        midiHandler.getMidiChannels()[0].noteOn(note.getMidiValue(), 100);
                     }
                 }
 
@@ -37,7 +44,7 @@ public class Jamm {
         }
 
         this.songTime++;
-        this.songTime %= song.getLength();
+        this.songTime %= (song.getLength() * song.getBeatLength());
     }
 
     public void setSong(Song song) {

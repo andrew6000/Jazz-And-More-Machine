@@ -8,8 +8,8 @@ import com.andrew6000.JAMM.song.SongKey;
 
 public class ChordMajor extends Chord {
 
-    public ChordMajor(int degree, SongKey key) {
-        super(degree, key);
+    public ChordMajor(int degree) {
+        super(degree);
 
         Note third = new Note(NoteVals.addInterval( root.getValue(), 4 ) );
         this.chordTones.add(third);

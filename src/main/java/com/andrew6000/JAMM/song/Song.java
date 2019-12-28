@@ -6,14 +6,16 @@ import java.util.HashMap;
 
 public class Song {
     private float tempo;
+    private float beatLength;
     private int timeSig;
     private int length;
     private SongKey songKey;
 
-    private HashMap<Integer, SongEvent> songEvents;
+    private HashMap<Float, SongEvent> songEvents;
 
-    public Song (int length, SongKey key) {
+    public Song (int length, float beatLength, SongKey key) {
         this.tempo = 120;
+        this.beatLength = beatLength;
         this.timeSig = 4;
         this.length = length;
         this.songKey = key;
@@ -30,15 +32,20 @@ public class Song {
         return timeSig;
     }
 
-    public HashMap<Integer, SongEvent> getSongEvents() {
+    public HashMap<Float, SongEvent> getSongEvents() {
         return songEvents;
     }
 
+    // Returns the length of the song in beats
     public int getLength() {
         return length;
     }
 
     public SongKey getSongKey() {
         return songKey;
+    }
+
+    public float getBeatLength() {
+        return beatLength;
     }
 }
